@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :bets
   devise_for :users
   resources :contents
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

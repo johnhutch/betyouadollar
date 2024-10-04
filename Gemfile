@@ -52,6 +52,7 @@ gem "devise", "~> 4.9"
 gem "pundit", "~> 2.3"
 gem "sassc-rails"
 gem "bootstrap", "~> 5.3"
+gem "faker"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
