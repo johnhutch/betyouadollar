@@ -31,19 +31,71 @@ if Rails.env.development? || Rails.env.test?
     email: "jake@test.com",
     password: "password2*",
   )
+  Profile.create!(
+    name: "Hutch",
+    venmo: "@hutch-123",
+    favorite_team: "Phillies",
+    user: User.first
+  )
+  Profile.create!(
+    name: "Santini",
+    venmo: "@santini-123",
+    favorite_team: "Mets",
+    user: User.second
+  )
+  Profile.create!(
+    name: "Jake",
+    venmo: "@jake-123",
+    favorite_team: "Fucking Yankees`",
+    user: User.third
+  )
 
+
+  # a bunch of unexpired, accepted, unsettled bets
   10.times do
     owner = User.all.sample
     better = User.all.sample
     sport = Faker::Sport.unusual_sport
     score = 1 + rand(100)
-    expiration = Faker::Time.between(from: DatimeTime.now + 1, to: DateTime.now + 14)
+    expiration = Faker::Time.between(from: DateTime.now + 1, to: DateTime.now + 14)
     Bet.create!(
       owner: owner,
       better: better,
-      description: "my favorite " + sport + " team will beat your favorite " + sport + " team by " + score,
+      description: "my favorite " + sport + " team will beat your favorite " + sport + " team by " + score.to_s,
       settled: false, 
       expiration: expiration
     )
   end
+
+  # a bunch of bets unaccepted, unsettled bets, some of which are expired, some of which aren't
+  20.times do
+    owner = User.all.sample
+    sport = Faker::Sport.unusual_sport
+    score = 1 + rand(100)
+    expiration = Faker::Time.between(from: 14.days.ago, to: DateTime.now + 14)
+    Bet.create!(
+      owner: owner,
+      better: nil,
+      description: "my favorite " + sport + " team will beat your favorite " + sport + " team by " + score.to_s,
+      settled: false, 
+      expiration: expiration
+    )
+  end
+
+  # a bunch of accepted, settled bets with varying expiration dates (past and future)
+  10.times do
+    owner = User.all.sample
+    better = User.all.sample
+    sport = Faker::Sport.unusual_sport
+    score = 1 + rand(100)
+    expiration = Faker::Time.between(from: 14.days.ago, to: DateTime.now + 14)
+    Bet.create!(
+      owner: owner,
+      better: better,
+      description: "my favorite " + sport + " team will beat your favorite " + sport + " team by " + score.to_s,
+      settled: true, 
+      expiration: expiration
+    )
+  end
+
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :profiles
   resources :bets
   devise_for :users
   resources :contents

@@ -1,0 +1,14 @@
+class CreateProfiles < ActiveRecord::Migration[7.1]
+  def change
+    create_table :profiles do |t|
+      t.references :user, null: false, foreign_key: true
+      t.string :name
+      t.string :venmo
+      t.string :paypal
+      t.string :cashapp
+      t.string :favorite_team
+
+      t.timestamps
+    end
+  end
+end

@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :owned_bets, :class_name => 'Bet', :foreign_key => 'owner_id'
   has_many :betted_bets, :class_name => 'Bet', :foreign_key => 'better_id'
+  has_one :profile
 end
