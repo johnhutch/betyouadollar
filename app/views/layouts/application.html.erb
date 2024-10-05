@@ -35,10 +35,7 @@
             <a class="nav-link <% if action_name == "home" %>active<% end %>" <% if action_name == "home" %>aria-current="page"<% end %> href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://github.com/SwiftkickWeb/betyouadollar">Github</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link 2</a>
+            <a class="nav-link" href="<%= bets_path %>">Open Bets</a>
           </li>
         </ul>
       </div>
@@ -61,6 +58,8 @@
     </div>
   </nav>
 
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
