@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :profiles
   resources :bets
+  get "/bets/:id/place", to: 'bets#place', as: "place_bet"
   devise_for :users
   resources :contents
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

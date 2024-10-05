@@ -1,5 +1,5 @@
 class BetsController < ApplicationController
-  before_action :set_bet, only: %i[ show edit update destroy ]
+  before_action :set_bet, only: %i[ show edit update destroy place ]
 
   # GET /bets or /bets.json
   def index
@@ -17,6 +17,20 @@ class BetsController < ApplicationController
 
   # GET /bets/1/edit
   def edit
+  end
+
+  def place
+    @bet.place(current_user)
+
+    respond_to do |format|
+      if @bet.save
+        format.html { redirect_to bets_path, notice: "Bet placed!" }
+        format.json { render :index, status: :created, location: bets_path }
+      else
+        format.html { render :index, status: :unprocessable_entity }
+        format.json { render json: @bet.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # POST /bets or /bets.json

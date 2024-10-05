@@ -12,31 +12,17 @@
   <% end %>
 
   <div>
-    <%= form.label :expiration, style: "display: block" %>
+    <%= form.label :expiration %>
     <%= form.datetime_field :expiration %>
   </div>
 
   <div>
-    <%= form.label :description, style: "display: block" %>
+    <%= form.label :description %>
     <%= form.text_field :description %>
   </div>
 
-  <div>
-    <%= form.label :owner_id, style: "display: block" %>
-    <%= form.text_field :owner_id %>
-  </div>
 
-  <div>
-    <%= form.label :better_id, style: "display: block" %>
-    <%= form.text_field :better_id %>
-  </div>
-
-  <div>
-    <%= form.label :settled, style: "display: block" %>
-    <%= form.check_box :settled %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= button_tag class: "btn btn-primary" do %>
+    Offer Bet <i class="bi-plus-circle-fill"></i>
+  <% end %>
 <% end %>

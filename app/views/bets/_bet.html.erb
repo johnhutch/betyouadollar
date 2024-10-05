@@ -7,9 +7,12 @@
     <p class="offered-by">Offered by <%= link_to bet.owner.profile.name, profile_path(bet.owner) %></p>
     <p class="expiration">Expires <%= bet.expiration.to_fs(:short) %></p>
   </div>
-  <% if bet.unaccepted? %>
-    <div class="card-footer">
-      <%= acceptance_text %>
-    </div>
+  <% if bet.unaccepted? && current_user %>
+    <a href="<%= place_bet_path(bet) %>" class="place-bet">
+      <div class="card-footer">
+        <%= acceptance_text %>
+        <i class="icon bi-check-square"></i>
+      </div>
+    </a>
   <% end %>
 </div>

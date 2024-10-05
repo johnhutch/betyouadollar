@@ -11,4 +11,8 @@ class Bet < ApplicationRecord
   def unaccepted?
     self.better == nil
   end
+
+  def place(user)
+    self.better = user
+  end
 end
